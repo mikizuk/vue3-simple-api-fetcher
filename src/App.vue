@@ -25,8 +25,7 @@ import TheFooter from '@/components/TheFooter.vue'
 .header {
   height: 70px;
   background-color: var(--bg-color);
-  box-shadow: 0 2px 4px var(--text-color);
-  padding: 1rem;
+  padding: 1rem 0.5rem;
 }
 
 main {
@@ -46,7 +45,5 @@ main {
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  background-color: var(--bg-color);
-  box-shadow: 2px 0 4px var(--text-color);
 }
 </style>
