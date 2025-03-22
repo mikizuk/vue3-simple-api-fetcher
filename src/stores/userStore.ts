@@ -1,18 +1,6 @@
+import type { Toast, User } from '@/types/types'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
-interface User {
-  id: number
-  name: string
-  email: string
-  username: string
-}
-
-interface Toast {
-  show: boolean
-  message: string
-  type: 'success' | 'error'
-}
 
 export const useUserStore = defineStore('user', () => {
   const users = ref<User[]>([])

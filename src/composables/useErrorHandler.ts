@@ -1,14 +1,5 @@
+import type { ErrorScenario, ErrorState } from '@/types/types'
 import { ref } from 'vue'
-
-interface ErrorState {
-  message: string
-  details?: unknown
-}
-
-interface ErrorScenario {
-  code: number
-  message: string
-}
 
 export function useErrorHandler() {
   const error = ref<ErrorState | null>(null)
