@@ -14,7 +14,7 @@ onMounted(() => {
 
 <template>
   <button class="button" @click="fetchUsers" :disabled="!isOnline">
-    Fetch Users (40% success chance)
+    Fetch Users (40% failure chance)
   </button>
   <h1>Users List</h1>
 
