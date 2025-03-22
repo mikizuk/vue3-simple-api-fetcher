@@ -1,12 +1,10 @@
 <script setup lang="ts">
-defineProps<{
-  message: string
-  type: 'success' | 'error'
-  show: boolean
-}>()
+import type { Toast } from '@/types/types'
+
+defineProps<Toast>()
 
 defineEmits<{
-  (e: 'close'): void
+  close: []
 }>()
 </script>
 
@@ -26,7 +24,7 @@ defineEmits<{
   right: 20px;
   padding: 12px 24px;
   border-radius: 6px;
-  color: white;
+  color: var(--bg-color);
   font-weight: 500;
   max-width: 350px;
   z-index: 9999;
@@ -47,7 +45,7 @@ defineEmits<{
 .toast__close {
   background: none;
   border: none;
-  color: white;
+  color: var(--bg-color);
   margin-left: 12px;
   padding: 0 4px;
   font-size: 20px;
