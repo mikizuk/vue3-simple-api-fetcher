@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
-
 defineProps<{
   message: string
   type: 'success' | 'error'

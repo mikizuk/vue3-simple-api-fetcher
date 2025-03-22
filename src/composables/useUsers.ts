@@ -1,20 +1,9 @@
 import { useUserStore } from '../stores/userStore'
+import { useErrorHandler } from './useErrorHandler'
 
 export function useUsers() {
   const userStore = useUserStore()
-
-  const simulateError = () => {
-    const shouldError = Math.random() < 0.3
-    if (shouldError) {
-      const errors = [
-        { status: 404, message: 'Users not found' },
-        { status: 500, message: 'Internal server error' },
-        { status: 503, message: 'Service temporarily unavailable' },
-      ]
-      const randomError = errors[Math.floor(Math.random() * errors.length)]
-      throw new Error(`HTTP error! status: ${randomError.status} - ${randomError.message}`)
-    }
-  }
+  const { handleError, simulateError } = useErrorHandler()
 
   const fetchUsers = async () => {
     userStore.setLoading(true)
@@ -30,8 +19,9 @@ export function useUsers() {
       const data = await response.json()
       userStore.setUsers(data)
     } catch (error) {
-      userStore.setError('Failed to fetch users')
-      console.error('Error fetching users:', error)
+      const handledError = handleError(error)
+      userStore.setError(handledError.message)
+      console.error('Error fetching users:', handledError)
     } finally {
       userStore.setLoading(false)
     }
