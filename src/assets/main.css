@@ -7,17 +7,19 @@
 :root {
   color-scheme: light dark;
 
-  /* Light theme variables */
   --text-color: #213547;
   --bg-color: #ffffff;
   --active: #4178e7;
+  --success-bg: #22c55e;
+  --error-bg: #dc2626;
 }
 
 :root.dark {
-  /* Dark theme variables */
   --text-color: rgba(255, 255, 255, 0.87);
   --bg-color: #242424;
   --active: #374151;
+  --success-bg: #15803d;
+  --error-bg: #991b1b;
 }
 
 body {
