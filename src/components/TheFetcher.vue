@@ -32,8 +32,6 @@ onMounted(() => {
 
 <style scoped>
 .button {
-  /* color: var(--text-color); */
-  /* background-color: var(--active); */
   border: none;
   border-radius: 4px;
   padding: 8px;
