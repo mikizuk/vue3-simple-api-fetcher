@@ -1,7 +1,9 @@
 import type { ErrorScenario, ErrorState } from '@/types/types'
 import { ref } from 'vue'
+import { useNetwork } from './useNetwork'
 
 export function useErrorHandler() {
+  const { isOnline } = useNetwork()
   const error = ref<ErrorState | null>(null)
 
   const errorScenarios: ErrorScenario[] = [
@@ -22,6 +24,12 @@ export function useErrorHandler() {
   }
 
   function handleError(err: unknown) {
+    if (!isOnline.value) {
+      return {
+        message: 'You are currently offline. Please check your internet connection.',
+      }
+    }
+
     if (err instanceof Error) {
       error.value = { message: err.message }
       return error.value

@@ -48,6 +48,7 @@ main {
 }
 
 .footer {
+  background-color: var(--bg-color);
   height: 34px;
   position: sticky;
   bottom: 0;

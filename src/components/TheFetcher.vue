@@ -2,17 +2,20 @@
 import { onMounted } from 'vue'
 import { useUsers } from '@/composables/useUsers'
 import { useUserStore } from '@/stores/userStore'
+import { useNetwork } from '@/composables/useNetwork'
 
 const userStore = useUserStore()
 const { fetchUsers } = useUsers()
-
+const { isOnline } = useNetwork()
 onMounted(() => {
   fetchUsers()
 })
 </script>
 
 <template>
-  <button class="button" @click="fetchUsers">Fetch Users (40% success chance)</button>
+  <button class="button" @click="fetchUsers" :disabled="isOnline">
+    Fetch Users (40% success chance)
+  </button>
   <h1>Users List</h1>
 
   <div v-if="userStore.loading" class="loading">Loading users...</div>
