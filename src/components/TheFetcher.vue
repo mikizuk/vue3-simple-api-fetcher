@@ -12,7 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button class="button" @click="fetchUsers">Fetch Users</button>
+  <button class="button" @click="fetchUsers">Fetch Users (30% success chance)</button>
   <h1>Users List</h1>
 
   <div v-if="userStore.loading" class="loading">Loading users...</div>

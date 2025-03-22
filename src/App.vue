@@ -2,6 +2,10 @@
 import TheHeader from '@/components/TheHeader.vue'
 import TheFetcher from '@/components/TheFetcher.vue'
 import TheFooter from '@/components/TheFooter.vue'
+import TheToast from './components/TheToast.vue'
+import { useUserStore } from './stores/userStore'
+
+const userStore = useUserStore()
 </script>
 
 <template>
@@ -10,6 +14,12 @@ import TheFooter from '@/components/TheFooter.vue'
     <main>
       <TheFetcher />
     </main>
+    <TheToast
+      :show="userStore.toast.show"
+      :message="userStore.toast.message"
+      :type="userStore.toast.type"
+      @close="userStore.hideToast()"
+    />
     <TheFooter class="footer" />
   </div>
 </template>

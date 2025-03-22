@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
 interface User {
   id: number
@@ -7,21 +8,62 @@ interface User {
   username: string
 }
 
-export const useUserStore = defineStore('user', {
-  state: () => ({
-    users: [] as User[],
-    loading: false,
-    error: null as string | null,
-  }),
-  actions: {
-    setUsers(users: User[]) {
-      this.users = users
-    },
-    setLoading(loading: boolean) {
-      this.loading = loading
-    },
-    setError(error: string | null) {
-      this.error = error
-    },
-  },
+interface Toast {
+  show: boolean
+  message: string
+  type: 'success' | 'error'
+}
+
+export const useUserStore = defineStore('user', () => {
+  const users = ref<User[]>([])
+  const loading = ref(false)
+  const error = ref<string | null>(null)
+  const toast = ref<Toast>({
+    show: false,
+    message: '',
+    type: 'success',
+  })
+
+  function setUsers(newUsers: User[]) {
+    users.value = newUsers
+    showToast('Users loaded successfully', 'success')
+  }
+
+  function setLoading(isLoading: boolean) {
+    loading.value = isLoading
+  }
+
+  function setError(newError: string | null) {
+    error.value = newError
+    if (newError) {
+      showToast(newError, 'error')
+    }
+  }
+
+  function showToast(message: string, type: 'success' | 'error') {
+    toast.value = {
+      show: true,
+      message,
+      type,
+    }
+    setTimeout(() => {
+      hideToast()
+    }, 5000)
+  }
+
+  function hideToast() {
+    toast.value.show = false
+  }
+
+  return {
+    users,
+    loading,
+    error,
+    toast,
+    setUsers,
+    setLoading,
+    setError,
+    showToast,
+    hideToast,
+  }
 })
