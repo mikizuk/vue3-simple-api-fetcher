@@ -13,7 +13,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <button class="button" @click="fetchUsers" :disabled="isOnline">
+  <button class="button" @click="fetchUsers" :disabled="!isOnline">
     Fetch Users (40% success chance)
   </button>
   <h1>Users List</h1>
@@ -35,6 +35,8 @@ onMounted(() => {
 
 <style scoped>
 .button {
+  color: var(--text-color);
+  background-color: var(--active);
   border: none;
   border-radius: 4px;
   padding: 8px;
@@ -44,8 +46,8 @@ onMounted(() => {
 }
 
 .button:hover {
-  color: var(--success-bg);
-  background-color: var(--active);
+  color: var(--bg-color);
+  background-color: var(--text-color);
 }
 
 .button:focus {
