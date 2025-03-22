@@ -1,5 +1,5 @@
 {
-  "name": "vue3-jsonplaceholder-fetcher",
+  "name": "vue3-simple-api-fetcher",
   "version": "0.0.0",
   "private": true,
   "type": "module",

@@ -4,7 +4,7 @@ export function useUsers() {
   const userStore = useUserStore()
 
   const simulateError = () => {
-    const shouldError = Math.random() < 0.2
+    const shouldError = Math.random() < 0.3
     if (shouldError) {
       const errors = [
         { status: 404, message: 'Users not found' },
@@ -23,7 +23,7 @@ export function useUsers() {
     try {
       simulateError()
 
-      const response = await fetch('https://jsonplaceholder.typicode.com/users')
+      const response = await fetch(`${import.meta.env.VITE_BASE_URL}`)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
